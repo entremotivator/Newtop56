@@ -1,0 +1,17 @@
+{
+  "id": "government_grants_001",
+  "meta": {
+    "instanceId": "government_grants_instance",
+    "templateCredsSetupCompleted": false
+  },
+  "name": "Government Grants - Grant Finder 24/7",
+  "tags": ["grants", "funding", "automation", "research"],
+  "nodes": [],
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "grants_finder_v1",
+  "connections": {}
+}

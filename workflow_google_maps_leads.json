@@ -1,0 +1,17 @@
+{
+  "id": "google_maps_leads_001",
+  "meta": {
+    "instanceId": "google_maps_leads_instance",
+    "templateCredsSetupCompleted": false
+  },
+  "name": "Google Maps Local Leads - Uncover Prospects 24/7",
+  "tags": ["google maps", "leads", "local business", "automation"],
+  "nodes": [],
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "maps_leads_v1",
+  "connections": {}
+}

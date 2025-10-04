@@ -1,0 +1,17 @@
+{
+  "id": "ai_social_content_001",
+  "meta": {
+    "instanceId": "ai_social_content_instance",
+    "templateCredsSetupCompleted": false
+  },
+  "name": "AI Social Content Creation - Automate Prospects 24/7",
+  "tags": ["social media", "content", "automation", "ai", "marketing"],
+  "nodes": [],
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "social_content_v1",
+  "connections": {}
+}

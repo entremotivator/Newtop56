@@ -1,0 +1,17 @@
+{
+  "id": "ai_phone_call_001",
+  "meta": {
+    "instanceId": "ai_phone_call_instance",
+    "templateCredsSetupCompleted": false
+  },
+  "name": "AI Phone Call - Google Calendar Booking Assistant 24/7",
+  "tags": ["phone", "calendar", "booking", "automation", "ai"],
+  "nodes": [],
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "phone_assistant_v1",
+  "connections": {}
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ai_email_assistant_001",
+  "meta": {
+    "instanceId": "ai_email_assistant_instance",
+    "templateCredsSetupCompleted": false
+  },
+  "name": "AI Email Assistant - Gmail Auto-Response System 24/7",
+  "tags": ["email", "automation", "ai", "gmail"],
+  "nodes": [],
+  "active": false,
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "email_assistant_v1",
+  "connections": {}
+}

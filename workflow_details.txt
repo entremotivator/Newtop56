@@ -1,0 +1,10 @@
+Name: AI-Powered Automated Outreach Scheduling Using Gemini, Gmail & Spreadsheets
+Description: - Import the workflow into your n8n instance.
+- Connect your Google Sheets and Gmail accounts.
+- Set up your leads using the provided spreadsheet template.
+- Get your Gemini API key and add it to n8n credentials.
+- Adjust the Schedule Trigger to control when emails are sent.
+- Customize the email prompts for your outreach tone.
+- Set rate limits to comply with Gmail policies.
+- Enable the workflow to start automated outreach.
+- Track replies and update lead status in Google Sheets.
