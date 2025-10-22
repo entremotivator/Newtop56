@@ -87,41 +87,27 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
 # ------------------------------
 # Load Workflow Data
 # ------------------------------
 def load_workflow_data():
-    """
-    Loads workflow JSON from streamlit_app/workflow_ai_email_assistant.json.
-    Returns default placeholder if missing or invalid.
-    """
-    base_path = os.path.dirname(os.path.abspath(__file__))
-    workflow_path = os.path.join(base_path, "streamlit_app", "workflow_ai_email_assistant.json")
-
+    workflow_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "streamlit_app", "workflow_ai_email_assistant.json")
     if not os.path.exists(workflow_path):
-        st.warning("⚠️ streamlit_app/workflow_ai_email_assistant.json not found.")
-        return {
-            "name": "AI Email Assistant",
-            "nodes": [],
-            "id": "N/A",
-            "active": False,
-            "versionId": "N/A"
-        }
-
+        st.warning("⚠️ workflow_ai_email_assistant.json not found in streamlit_app/")
+        return {"name": "AI Email Assistant", "nodes": [], "id": "N/A", "active": False, "versionId": "N/A"}
     try:
-        with open(workflow_path, "r", encoding="utf-8") as f:
+        with open(workflow_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except json.JSONDecodeError as e:
         st.error(f"❌ Error parsing workflow JSON: {e}")
-        return {
-            "name": "AI Email Assistant",
-            "nodes": [],
-            "id": "N/A",
-            "active": False,
-            "versionId": "N/A"
-        }
+        return {"name": "AI Email Assistant", "nodes": [], "id": "N/A", "active": False, "versionId": "N/A"}
 
+def extract_description(workflow_data):
+    """Extract description from Sticky Note node"""
+    for node in workflow_data.get('nodes', []):
+        if node.get('type') == 'n8n-nodes-base.stickyNote' and 'content' in node.get('parameters', {}):
+            return node['parameters']['content']
+    return "No description provided."
 
 # ------------------------------
 # Main App
@@ -135,90 +121,55 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # Load workflow JSON
+    # Load workflow
     workflow_data = load_workflow_data()
-    workflow_name = workflow_data.get("name", "AI Email Assistant")
+    workflow_name = workflow_data.get('name', 'AI Email Assistant')
+    description = extract_description(workflow_data)
 
     # Workflow card
     st.markdown('<div class="workflow-card">', unsafe_allow_html=True)
     st.markdown(f'<div class="workflow-title">{workflow_name}</div>', unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 1])
 
-    # ------------------------------
-    # Left Column (Image)
-    # ------------------------------
     with col1:
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
-        st.markdown("### 📧 AI Email Automation")
-
+        st.markdown("### 🤖 AI Email Automation")
         image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "streamlit_app", "ai_email_assistant.png")
         if os.path.exists(image_path):
-            st.image(image_path, use_container_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
+            st.image(image_path, use_column_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
         else:
             st.info("🖼️ Product image (streamlit_app/ai_email_assistant.png) will appear here")
-
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # ------------------------------
-    # Right Column (Descriptions)
-    # ------------------------------
     with col2:
-        # Overview
+        # Description boxes
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">📝 Workflow Overview</div>', unsafe_allow_html=True)
-        st.markdown("""
-        <div class="description-content">
-        The **AI Email Assistant** is an intelligent automation system that manages customer emails,
-        transfers calls, and sends SMS messages automatically. This 24/7 AI-powered assistant ensures
-        instant communication, smarter workflows, and personalized engagement across all channels.
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(f'<div class="description-content">This {workflow_name} is an advanced automation solution designed to streamline your business processes. Leveraging AI and intelligent automation, it connects multiple services to automate repetitive tasks, saving time and improving efficiency.</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
-        # Key Features
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
-        st.markdown('<div class="description-title">🚀 Key Features</div>', unsafe_allow_html=True)
-        st.markdown("""
-        <div class="description-content">
-        • Automated AI email responses  
-        • Smart classification & routing  
-        • Gmail integration for seamless workflow  
-        • 24/7 customer communication  
-        • Custom response templates  
-        • Multi-channel (Email, SMS, Calls)  
-        • Real-time notifications  
-        • Analytics and performance reports  
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="description-title">🚀 Setup Instructions</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="description-content">{description}</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ------------------------------
-    # Workflow Stats
-    # ------------------------------
+    # Workflow statistics
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
-
     col_stat1, col_stat2, col_stat3, col_stat4 = st.columns(4)
-    with col_stat1:
-        st.metric("Total Nodes", len(workflow_data.get("nodes", [])))
-    with col_stat2:
-        st.metric("Workflow ID", workflow_data.get("id", "N/A")[:20] + "...")
-    with col_stat3:
-        st.metric("Status", "Active" if workflow_data.get("active", False) else "Inactive")
-    with col_stat4:
-        st.metric("Version", workflow_data.get("versionId", "N/A")[:20])
+    col_stat1.metric("Total Nodes", len(workflow_data.get('nodes', [])))
+    col_stat2.metric("Workflow ID", workflow_data.get('id', 'N/A')[:8] + "...")
+    col_stat3.metric("Status", "Active" if workflow_data.get('active', False) else "Inactive")
+    col_stat4.metric("Version", workflow_data.get('versionId', 'N/A')[:8] + "...")
 
-    # ------------------------------
-    # Download JSON
-    # ------------------------------
+    # Download section
     st.markdown("---")
     st.markdown('<div class="download-section">', unsafe_allow_html=True)
     st.markdown("### 📥 Download Workflow")
-    st.markdown("Click below to download your workflow JSON file for import into n8n.", unsafe_allow_html=True)
-
+    st.markdown("Click the button below to download the complete workflow JSON file for n8n.", unsafe_allow_html=True)
     workflow_json = json.dumps(workflow_data, indent=2)
     st.download_button(
         label="⬇️ Download Workflow JSON",
@@ -228,9 +179,7 @@ def main():
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ------------------------------
     # Footer
-    # ------------------------------
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #6c757d; padding: 1rem;">
@@ -238,9 +187,5 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-
-# ------------------------------
-# Run App
-# ------------------------------
 if __name__ == "__main__":
     main()
