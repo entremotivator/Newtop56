@@ -135,7 +135,7 @@ def main():
     with col1:
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.markdown("### 🤖 AI Email Automation")
-        image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "streamlit_app", "ai_email_assistant.png")
+        image_path = "ai_email_assistant.png"
         if os.path.exists(image_path):
             st.image(image_path, use_column_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
         else:
