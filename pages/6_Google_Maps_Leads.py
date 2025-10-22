@@ -124,8 +124,7 @@ def main():
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.markdown("### 🗺️ Local Lead Generation")
         
-        # Check if product image exists
-        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "google_maps_leads.png")
+        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "streamlit_app", "google_maps_leads.png")
         if os.path.exists(image_path):
             st.image(image_path, use_column_width=True, caption="Google Maps Local Leads - Prospect Discovery System")
         else:
