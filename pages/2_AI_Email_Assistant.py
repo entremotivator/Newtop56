@@ -2,7 +2,9 @@ import streamlit as st
 import json
 import os
 
-# Page configuration
+# ------------------------------
+# Page Configuration
+# ------------------------------
 st.set_page_config(
     page_title="AI Email Assistant",
     page_icon="📧",
@@ -10,7 +12,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling
+# ------------------------------
+# Custom CSS for Modern UI
+# ------------------------------
 st.markdown("""
 <style>
     .main-header {
@@ -83,119 +87,148 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Load workflow data
+# ------------------------------
+# Load Workflow Data
+# ------------------------------
 def load_workflow_data():
-    workflow_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "workflow_ai_email_assistant.json")
+    """
+    Load the workflow JSON file if it exists.
+    Fallback to default placeholder data if missing or invalid.
+    """
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    workflow_path = os.path.join(base_path, "workflow_ai_email_assistant.json")
+
     if not os.path.exists(workflow_path):
         st.warning("⚠️ workflow_ai_email_assistant.json not found.")
-        return {"name": "AI Email Assistant", "nodes": [], "id": "N/A", "active": False, "versionId": "N/A"}
+        return {
+            "name": "AI Email Assistant",
+            "nodes": [],
+            "id": "N/A",
+            "active": False,
+            "versionId": "N/A"
+        }
+
     try:
-        with open(workflow_path, 'r', encoding='utf-8') as f:
+        with open(workflow_path, "r", encoding="utf-8") as f:
             return json.load(f)
     except json.JSONDecodeError as e:
         st.error(f"❌ Error parsing workflow JSON: {e}")
-        return {"name": "AI Email Assistant", "nodes": [], "id": "N/A", "active": False, "versionId": "N/A"}
+        return {
+            "name": "AI Email Assistant",
+            "nodes": [],
+            "id": "N/A",
+            "active": False,
+            "versionId": "N/A"
+        }
 
-# Main app
+# ------------------------------
+# Main App
+# ------------------------------
 def main():
-    # Header
+    # Header Section
     st.markdown("""
     <div class="main-header">
         <h1>📧 AI Email Assistant</h1>
         <p style="font-size: 1.2rem; margin-top: 0.5rem;">Gmail Auto-Response System 24/7</p>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Load workflow
+
+    # Load Workflow Data
     workflow_data = load_workflow_data()
-    workflow_name = workflow_data.get('name', 'AI Email Assistant')
-    
-    # Workflow card
+    workflow_name = workflow_data.get("name", "AI Email Assistant")
+
+    # Workflow Card
     st.markdown('<div class="workflow-card">', unsafe_allow_html=True)
-    
-    # Workflow title
     st.markdown(f'<div class="workflow-title">{workflow_name}</div>', unsafe_allow_html=True)
-    
-    # Create two columns for layout
-    col1, col2 = st.columns([1, 1])
-    
+
+    col1, col2 = st.columns(2)
+
+    # ------------------------------
+    # Left Column: Image Section
+    # ------------------------------
     with col1:
-        # Image section
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.markdown("### 📧 AI Email Automation")
-        
-        # Check if product image exists
-        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ai_email_assistant.png")
+
+        image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ai_email_assistant.png")
         if os.path.exists(image_path):
-            st.image(image_path, use_column_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
+            st.image(image_path, use_container_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
         else:
             st.info("🖼️ Product image will be displayed here")
-        
+
         st.markdown('</div>', unsafe_allow_html=True)
-    
+
+    # ------------------------------
+    # Right Column: Description Section
+    # ------------------------------
     with col2:
-        # Description 1: Overview
+        # Overview
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">📝 Workflow Overview</div>', unsafe_allow_html=True)
-        st.markdown(f'''<div class="description-content">The AI Email Assistant is an intelligent automation system that handles customer emails, transfers calls, and sends SMS messages automatically. This 24/7 solution ensures instant communication and smarter business operations by leveraging AI to provide personalized responses and seamless customer engagement.</div>''', unsafe_allow_html=True)
+        st.markdown("""
+        <div class="description-content">
+        The **AI Email Assistant** is an intelligent automation system that manages customer emails,
+        transfers calls, and sends SMS messages automatically. This 24/7 AI-powered solution ensures
+        instant communication and personalized engagement across multiple channels.
+        </div>
+        """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
-        
-        # Description 2: Key Features
+
+        # Key Features
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">🚀 Key Features</div>', unsafe_allow_html=True)
-        st.markdown(f'''<div class="description-content">• Automated email responses powered by AI
-• Intelligent email classification and routing
-• Integration with Gmail for seamless operation
-• 24/7 availability for customer communication
-• Customizable response templates
-• Multi-channel communication support
-• Real-time notification system
-• Analytics and reporting dashboard</div>''', unsafe_allow_html=True)
+        st.markdown("""
+        <div class="description-content">
+        • Automated email responses powered by AI  
+        • Smart email classification & routing  
+        • Gmail integration for seamless operations  
+        • 24/7 availability for customer communication  
+        • Customizable response templates  
+        • Multi-channel support (email, SMS, calls)  
+        • Real-time notifications  
+        • Analytics and reporting dashboard  
+        </div>
+        """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
-    
+
     st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Workflow statistics
+
+    # ------------------------------
+    # Workflow Statistics Section
+    # ------------------------------
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
-    
+
     col_stat1, col_stat2, col_stat3, col_stat4 = st.columns(4)
-    
     with col_stat1:
-        st.metric("Total Nodes", len(workflow_data.get('nodes', [])))
-    
+        st.metric("Total Nodes", len(workflow_data.get("nodes", [])))
     with col_stat2:
-        st.metric("Workflow ID", workflow_data.get('id', 'N/A')[:20] + "...")
-    
+        st.metric("Workflow ID", workflow_data.get("id", "N/A")[:20] + "...")
     with col_stat3:
-        active_status = "Active" if workflow_data.get('active', False) else "Inactive"
-        st.metric("Status", active_status)
-    
+        st.metric("Status", "Active" if workflow_data.get("active", False) else "Inactive")
     with col_stat4:
-        st.metric("Version", workflow_data.get('versionId', 'N/A')[:20])
-    
-    # Download section
+        st.metric("Version", workflow_data.get("versionId", "N/A")[:20])
+
+    # ------------------------------
+    # Download Section
+    # ------------------------------
     st.markdown("---")
     st.markdown('<div class="download-section">', unsafe_allow_html=True)
     st.markdown("### 📥 Download Workflow")
-    st.markdown("Click the button below to download the complete workflow JSON file and import it into your n8n instance", unsafe_allow_html=True)
-    
-    # Create download button
+    st.markdown("Click below to download the complete workflow JSON file to import into your n8n instance.", unsafe_allow_html=True)
+
     workflow_json = json.dumps(workflow_data, indent=2)
-    
-    col_download1, col_download2, col_download3 = st.columns([1, 2, 1])
-    with col_download2:
-        st.download_button(
-            label="⬇️ Download Workflow JSON",
-            data=workflow_json,
-            file_name=f"{workflow_name.replace(' ', '_')}.json",
-            mime="application/json",
-            use_column_width=True
-        )
-    
+    st.download_button(
+        label="⬇️ Download Workflow JSON",
+        data=workflow_json,
+        file_name=f"{workflow_name.replace(' ', '_')}.json",
+        mime="application/json"
+    )
     st.markdown('</div>', unsafe_allow_html=True)
-    
+
+    # ------------------------------
     # Footer
+    # ------------------------------
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #6c757d; padding: 1rem;">
@@ -203,5 +236,8 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
+# ------------------------------
+# Run the App
+# ------------------------------
 if __name__ == "__main__":
     main()
