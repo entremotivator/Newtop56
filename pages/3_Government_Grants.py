@@ -117,8 +117,7 @@ def main():
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.markdown("### 💰 Grant Discovery Automation")
         
-        # Check if product image exists
-        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "government_grants.png")
+        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "streamlit_app", "government_grants.png")
         if os.path.exists(image_path):
             st.image(image_path, use_column_width=True, caption="Government Grants - Grant Finder System")
         else:
