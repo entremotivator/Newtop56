@@ -133,7 +133,7 @@ def main():
         st.markdown("### 🤖 AI Employee Automation")
         
         # Check if product image exists
-        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "product_image.webp")
+        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "streamlit_app", "product_image.webp")
         if os.path.exists(image_path):
             st.image(image_path, use_column_width=True, caption="AI-Powered Workflow Automation")
         else:
@@ -189,7 +189,7 @@ def main():
         st.download_button(
             label="⬇️ Download Workflow JSON",
             data=workflow_json,
-            file_name=f"{workflow_name.replace(" ", "_")}.json",
+            file_name=f"{workflow_name.replace(' ', '_')}.json",
             mime="application/json",
             use_column_width=True
         )
