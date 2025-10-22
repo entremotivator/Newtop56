@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # ------------------------------
-# Custom CSS for Modern UI
+# Custom CSS
 # ------------------------------
 st.markdown("""
 <style>
@@ -87,19 +87,20 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
 # ------------------------------
 # Load Workflow Data
 # ------------------------------
 def load_workflow_data():
     """
-    Load the workflow JSON file if it exists.
-    Fallback to default placeholder data if missing or invalid.
+    Loads workflow JSON from streamlit_app/workflow_ai_email_assistant.json.
+    Returns default placeholder if missing or invalid.
     """
     base_path = os.path.dirname(os.path.abspath(__file__))
-    workflow_path = os.path.join(base_path, "workflow_ai_email_assistant.json")
+    workflow_path = os.path.join(base_path, "streamlit_app", "workflow_ai_email_assistant.json")
 
     if not os.path.exists(workflow_path):
-        st.warning("⚠️ workflow_ai_email_assistant.json not found.")
+        st.warning("⚠️ streamlit_app/workflow_ai_email_assistant.json not found.")
         return {
             "name": "AI Email Assistant",
             "nodes": [],
@@ -121,11 +122,12 @@ def load_workflow_data():
             "versionId": "N/A"
         }
 
+
 # ------------------------------
 # Main App
 # ------------------------------
 def main():
-    # Header Section
+    # Header
     st.markdown("""
     <div class="main-header">
         <h1>📧 AI Email Assistant</h1>
@@ -133,33 +135,33 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # Load Workflow Data
+    # Load workflow JSON
     workflow_data = load_workflow_data()
     workflow_name = workflow_data.get("name", "AI Email Assistant")
 
-    # Workflow Card
+    # Workflow card
     st.markdown('<div class="workflow-card">', unsafe_allow_html=True)
     st.markdown(f'<div class="workflow-title">{workflow_name}</div>', unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
     # ------------------------------
-    # Left Column: Image Section
+    # Left Column (Image)
     # ------------------------------
     with col1:
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.markdown("### 📧 AI Email Automation")
 
-        image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ai_email_assistant.png")
+        image_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "streamlit_app", "ai_email_assistant.png")
         if os.path.exists(image_path):
             st.image(image_path, use_container_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
         else:
-            st.info("🖼️ Product image will be displayed here")
+            st.info("🖼️ Product image (streamlit_app/ai_email_assistant.png) will appear here")
 
         st.markdown('</div>', unsafe_allow_html=True)
 
     # ------------------------------
-    # Right Column: Description Section
+    # Right Column (Descriptions)
     # ------------------------------
     with col2:
         # Overview
@@ -168,8 +170,8 @@ def main():
         st.markdown("""
         <div class="description-content">
         The **AI Email Assistant** is an intelligent automation system that manages customer emails,
-        transfers calls, and sends SMS messages automatically. This 24/7 AI-powered solution ensures
-        instant communication and personalized engagement across multiple channels.
+        transfers calls, and sends SMS messages automatically. This 24/7 AI-powered assistant ensures
+        instant communication, smarter workflows, and personalized engagement across all channels.
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
@@ -179,14 +181,14 @@ def main():
         st.markdown('<div class="description-title">🚀 Key Features</div>', unsafe_allow_html=True)
         st.markdown("""
         <div class="description-content">
-        • Automated email responses powered by AI  
-        • Smart email classification & routing  
-        • Gmail integration for seamless operations  
-        • 24/7 availability for customer communication  
-        • Customizable response templates  
-        • Multi-channel support (email, SMS, calls)  
+        • Automated AI email responses  
+        • Smart classification & routing  
+        • Gmail integration for seamless workflow  
+        • 24/7 customer communication  
+        • Custom response templates  
+        • Multi-channel (Email, SMS, Calls)  
         • Real-time notifications  
-        • Analytics and reporting dashboard  
+        • Analytics and performance reports  
         </div>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
@@ -194,7 +196,7 @@ def main():
     st.markdown('</div>', unsafe_allow_html=True)
 
     # ------------------------------
-    # Workflow Statistics Section
+    # Workflow Stats
     # ------------------------------
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
@@ -210,12 +212,12 @@ def main():
         st.metric("Version", workflow_data.get("versionId", "N/A")[:20])
 
     # ------------------------------
-    # Download Section
+    # Download JSON
     # ------------------------------
     st.markdown("---")
     st.markdown('<div class="download-section">', unsafe_allow_html=True)
     st.markdown("### 📥 Download Workflow")
-    st.markdown("Click below to download the complete workflow JSON file to import into your n8n instance.", unsafe_allow_html=True)
+    st.markdown("Click below to download your workflow JSON file for import into n8n.", unsafe_allow_html=True)
 
     workflow_json = json.dumps(workflow_data, indent=2)
     st.download_button(
@@ -236,8 +238,9 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
+
 # ------------------------------
-# Run the App
+# Run App
 # ------------------------------
 if __name__ == "__main__":
     main()
