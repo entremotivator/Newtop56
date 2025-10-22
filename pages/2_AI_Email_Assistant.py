@@ -88,7 +88,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ------------------------------
-# Load Workflow Data
+# Load workflow data
 # ------------------------------
 def load_workflow_data():
     workflow_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "streamlit_app", "workflow_ai_email_assistant.json")
@@ -139,14 +139,13 @@ def main():
         if os.path.exists(image_path):
             st.image(image_path, use_column_width=True, caption="AI Email Assistant - Gmail Auto-Response System")
         else:
-            st.info("🖼️ Product image (streamlit_app/ai_email_assistant.png) will appear here")
+            st.info("🖼️ Product image will appear here")
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col2:
-        # Description boxes
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">📝 Workflow Overview</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="description-content">This {workflow_name} is an advanced automation solution designed to streamline your business processes. Leveraging AI and intelligent automation, it connects multiple services to automate repetitive tasks, saving time and improving efficiency.</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="description-content">This {workflow_name} is an intelligent automation system that handles customer emails, transfers calls, and sends SMS messages automatically. Leveraging AI ensures 24/7 instant communication and smarter business operations.</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
