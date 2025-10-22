@@ -147,6 +147,64 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
+    # Business Benefits section
+    st.markdown("---")
+    st.markdown("### 💡 Business Benefits")
+    
+    col_benefit1, col_benefit2, col_benefit3 = st.columns(3)
+    
+    with col_benefit1:
+        st.markdown("""
+        <div class="description-box">
+            <h4>🚀 Consistent Presence</h4>
+            <p>Maintain active social media presence 24/7. Never go dark on social platforms with automated, scheduled content delivery.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit2:
+        st.markdown("""
+        <div class="description-box">
+            <h4>📊 Data-Driven Content</h4>
+            <p>AI analyzes engagement patterns and optimizes content for maximum reach. Post at the perfect time for your audience.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit3:
+        st.markdown("""
+        <div class="description-box">
+            <h4>💰 Cost Effective</h4>
+            <p>Replace expensive social media agencies with intelligent automation. Save thousands while maintaining professional quality.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Supported Platforms section
+    st.markdown("---")
+    st.markdown("### 🌐 Supported Platforms")
+    
+    platforms = [
+        ("Facebook", "Posts, stories, reels, groups, business pages, marketplace listings"),
+        ("Instagram", "Feed posts, stories, reels, IGTV, carousel posts, shopping tags"),
+        ("LinkedIn", "Company updates, articles, polls, document sharing, job postings"),
+        ("Twitter/X", "Tweets, threads, polls, spaces promotion, trending hashtags"),
+        ("TikTok", "Video posts, duets, stitches, trending sounds, hashtag challenges"),
+        ("YouTube", "Video uploads, shorts, community posts, premiere scheduling"),
+        ("Pinterest", "Pins, boards, idea pins, shopping catalogs, trend analysis"),
+        ("Reddit", "Subreddit posts, comments, community engagement, AMA scheduling")
+    ]
+    
+    for i in range(0, len(platforms), 2):
+        cols = st.columns(2)
+        for j, col in enumerate(cols):
+            if i + j < len(platforms):
+                title, desc = platforms[i + j]
+                with col:
+                    st.markdown(f"""
+                    <div class="description-box">
+                        <div class="description-title">✓ {title}</div>
+                        <div class="description-content">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
     # Workflow statistics
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
