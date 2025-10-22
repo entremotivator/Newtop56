@@ -147,6 +147,62 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
+    # Business Benefits section
+    st.markdown("---")
+    st.markdown("### 💡 Business Benefits")
+    
+    col_benefit1, col_benefit2, col_benefit3 = st.columns(3)
+    
+    with col_benefit1:
+        st.markdown("""
+        <div class="description-box">
+            <h4>📞 24/7 Availability</h4>
+            <p>Never miss a booking opportunity. AI handles calls and schedules appointments even outside business hours, across all time zones.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit2:
+        st.markdown("""
+        <div class="description-box">
+            <h4>🎯 Zero Double-Booking</h4>
+            <p>Intelligent conflict detection ensures your calendar stays organized. Automatic rescheduling suggestions when conflicts arise.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit3:
+        st.markdown("""
+        <div class="description-box">
+            <h4>📉 Reduce No-Shows</h4>
+            <p>Automated reminders via SMS and email reduce no-show rates by up to 70%. Keep your schedule full and productive.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Use Cases section
+    st.markdown("---")
+    st.markdown("### 🎯 Perfect For")
+    
+    use_cases = [
+        ("Medical Practices", "Patient appointment scheduling, reminder calls, rescheduling management, waitlist automation"),
+        ("Sales Teams", "Demo scheduling, prospect calls, follow-up automation, meeting coordination"),
+        ("Service Businesses", "Client bookings, consultation scheduling, service appointments, capacity management"),
+        ("Consultants", "Client meetings, discovery calls, project kickoffs, availability management"),
+        ("Real Estate", "Property viewings, client consultations, open house scheduling, follow-up calls"),
+        ("Legal Services", "Client consultations, court date management, case review scheduling, intake calls")
+    ]
+    
+    for i in range(0, len(use_cases), 2):
+        cols = st.columns(2)
+        for j, col in enumerate(cols):
+            if i + j < len(use_cases):
+                title, desc = use_cases[i + j]
+                with col:
+                    st.markdown(f"""
+                    <div class="description-box">
+                        <div class="description-title">✓ {title}</div>
+                        <div class="description-content">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+    
     # Workflow statistics
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
