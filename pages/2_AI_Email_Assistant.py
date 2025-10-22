@@ -145,15 +145,76 @@ def main():
     with col2:
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">📝 Workflow Overview</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="description-content">This {workflow_name} is an intelligent automation system that handles customer emails, transfers calls, and sends SMS messages automatically. Leveraging AI ensures 24/7 instant communication and smarter business operations.</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="description-content">This {workflow_name} is an intelligent automation system that handles customer emails, transfers calls, and sends SMS messages automatically. Leveraging AI ensures 24/7 instant communication and smarter business operations. Never miss an important email again with intelligent categorization, priority detection, and context-aware responses.</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
-        st.markdown('<div class="description-title">🚀 Setup Instructions</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="description-content">{description}</div>', unsafe_allow_html=True)
+        st.markdown('<div class="description-title">🚀 Key Features</div>', unsafe_allow_html=True)
+        st.markdown('''<div class="description-content">• AI-powered email analysis and categorization
+• Intelligent auto-response generation
+• Priority email detection and routing
+• Multi-language support for global communication
+• Sentiment analysis for customer satisfaction
+• Automated follow-up scheduling
+• Integration with CRM and ticketing systems
+• Smart email threading and conversation tracking</div>''', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### 💡 Business Benefits")
+    
+    col_benefit1, col_benefit2, col_benefit3 = st.columns(3)
+    
+    with col_benefit1:
+        st.markdown("""
+        <div class="description-box">
+            <h4>⚡ Instant Response</h4>
+            <p>Respond to customer emails within seconds, not hours. Improve customer satisfaction with immediate acknowledgment and intelligent routing.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit2:
+        st.markdown("""
+        <div class="description-box">
+            <h4>💰 Cost Savings</h4>
+            <p>Reduce support team workload by 60-80%. Automate routine inquiries and let your team focus on complex issues that require human touch.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit3:
+        st.markdown("""
+        <div class="description-box">
+            <h4>📈 Scalability</h4>
+            <p>Handle unlimited email volume without additional staff. Scale your customer communication effortlessly as your business grows.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("### 🎯 Common Use Cases")
+    
+    use_cases = [
+        ("Customer Support", "Automatically categorize and respond to common support inquiries, route complex issues to appropriate team members"),
+        ("Sales Inquiries", "Qualify leads, schedule demos, and provide product information instantly to potential customers"),
+        ("Order Status", "Provide real-time order updates, tracking information, and delivery notifications automatically"),
+        ("Appointment Booking", "Schedule meetings, send confirmations, and manage calendar availability without manual intervention"),
+        ("FAQ Responses", "Answer frequently asked questions instantly with accurate, context-aware information"),
+        ("Follow-up Automation", "Send timely follow-ups based on customer interactions and engagement patterns")
+    ]
+    
+    for i in range(0, len(use_cases), 2):
+        cols = st.columns(2)
+        for j, col in enumerate(cols):
+            if i + j < len(use_cases):
+                title, desc = use_cases[i + j]
+                with col:
+                    st.markdown(f"""
+                    <div class="description-box">
+                        <div class="description-title">✓ {title}</div>
+                        <div class="description-content">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
 
     # Workflow statistics
     st.markdown("---")
@@ -163,6 +224,12 @@ def main():
     col_stat2.metric("Workflow ID", workflow_data.get('id', 'N/A')[:8] + "...")
     col_stat3.metric("Status", "Active" if workflow_data.get('active', False) else "Inactive")
     col_stat4.metric("Version", workflow_data.get('versionId', 'N/A')[:8] + "...")
+
+    st.markdown("---")
+    st.markdown("### 🛠️ Setup Instructions")
+    st.markdown('<div class="description-box">', unsafe_allow_html=True)
+    st.markdown(f'<div class="description-content">{description}</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     # Download section
     st.markdown("---")
