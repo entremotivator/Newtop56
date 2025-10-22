@@ -13,7 +13,7 @@ st.set_page_config(
 # --- Locate the image properly ---
 # Build path relative to current file directory
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_PATH = os.path.join(CURRENT_DIR, "Image123.png")
+IMAGE_PATH = os.path.join(CURRENT_DIR, "streamlit_app", "Image123.png")
 
 # Custom CSS
 st.markdown("""
