@@ -142,11 +142,90 @@ def main():
         # Description 2: Key Features
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">🚀 Key Features</div>', unsafe_allow_html=True)
-        st.markdown(f'''<div class="description-content">• Automated Google Maps scraping\n• Location-based lead discovery\n• Business contact information extraction\n• Industry and category filtering\n• Lead qualification and scoring\n• CRM integration and export\n• Duplicate detection and removal\n• Real-time data enrichment</div>''', unsafe_allow_html=True)
+        st.markdown(f'''<div class="description-content">• Automated Google Maps scraping
+• Location-based lead discovery
+• Business contact information extraction
+• Industry and category filtering
+• Lead qualification and scoring
+• CRM integration and export
+• Duplicate detection and removal
+• Real-time data enrichment</div>''', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
     
+    # Benefits section
+    st.markdown("---")
+    st.markdown("### 💡 Business Benefits")
+    
+    col_benefit1, col_benefit2, col_benefit3 = st.columns(3)
+    
+    with col_benefit1:
+        st.markdown("""
+        <div class="description-box">
+            <h4>🎯 Targeted Prospecting</h4>
+            <p>Find businesses in specific locations, industries, and categories. Build highly targeted prospect lists for maximum conversion rates.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit2:
+        st.markdown("""
+        <div class="description-box">
+            <h4>⚡ Speed & Scale</h4>
+            <p>Generate thousands of qualified leads in hours, not weeks. Automate what used to take entire sales teams days to accomplish.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit3:
+        st.markdown("""
+        <div class="description-box">
+            <h4>📈 Higher ROI</h4>
+            <p>Focus on local businesses ready to buy. Geographic targeting ensures your outreach reaches the most relevant prospects.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Use Cases section
+    st.markdown("---")
+    st.markdown("### 🎯 Ideal For")
+    
+    use_cases = [
+        ("B2B Sales Teams", "Find local businesses needing your services, build targeted prospect lists, identify decision makers"),
+        ("Marketing Agencies", "Discover businesses without websites, identify poor online presence, offer digital marketing services"),
+        ("Software Companies", "Target businesses by industry, find companies using competitor tools, identify technology gaps"),
+        ("Service Providers", "Locate businesses in service area, identify maintenance needs, build recurring service contracts"),
+        ("Wholesale Suppliers", "Find retail businesses, identify purchasing managers, build distribution networks"),
+        ("Franchise Development", "Identify potential franchise locations, analyze market density, competitive intelligence")
+    ]
+    
+    for i in range(0, len(use_cases), 2):
+        cols = st.columns(2)
+        for j, col in enumerate(cols):
+            if i + j < len(use_cases):
+                title, desc = use_cases[i + j]
+                with col:
+                    st.markdown(f"""
+                    <div class="description-box">
+                        <div class="description-title">✓ {title}</div>
+                        <div class="description-content">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+    # Data Points section
+    st.markdown("---")
+    st.markdown("### 📋 Extracted Data Points")
+    
+    st.markdown("""
+    <div class="description-box">
+        <div class="description-content">
+        <strong>Business Information:</strong> Name, address, phone number, website, email, business hours, rating, review count<br><br>
+        <strong>Location Data:</strong> GPS coordinates, neighborhood, city, state, zip code, service area<br><br>
+        <strong>Business Details:</strong> Category, industry, services offered, price range, years in business<br><br>
+        <strong>Engagement Metrics:</strong> Response rate, popular times, customer photos, Q&A activity<br><br>
+        <strong>Competitive Intel:</strong> Nearby competitors, market density, rating comparison, service gaps
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
     # Workflow statistics
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
