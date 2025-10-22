@@ -147,6 +147,62 @@ def main():
     
     st.markdown('</div>', unsafe_allow_html=True)
     
+    # Business Benefits section
+    st.markdown("---")
+    st.markdown("### 💡 Business Benefits")
+    
+    col_benefit1, col_benefit2, col_benefit3 = st.columns(3)
+    
+    with col_benefit1:
+        st.markdown("""
+        <div class="description-box">
+            <h4>💰 Funding Access</h4>
+            <p>Never miss a grant opportunity. Get instant alerts for new funding programs that match your business profile and eligibility criteria.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit2:
+        st.markdown("""
+        <div class="description-box">
+            <h4>⏰ Time Savings</h4>
+            <p>Save hundreds of hours manually searching grant databases. Automated monitoring ensures you're always aware of relevant opportunities.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col_benefit3:
+        st.markdown("""
+        <div class="description-box">
+            <h4>🎯 Smart Matching</h4>
+            <p>AI-powered eligibility matching ensures you only see grants you qualify for, increasing your success rate and reducing wasted effort.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Grant Categories section
+    st.markdown("---")
+    st.markdown("### 🏆 Grant Categories Covered")
+    
+    grant_categories = [
+        ("Small Business Grants", "SBA loans, innovation grants, minority-owned business funding, startup capital programs"),
+        ("Research & Development", "R&D tax credits, innovation funding, technology development grants, patent assistance"),
+        ("Green Energy", "Renewable energy incentives, sustainability grants, carbon reduction programs, clean tech funding"),
+        ("Education & Training", "Workforce development, employee training programs, educational institution grants"),
+        ("Healthcare", "Medical research funding, healthcare facility grants, public health initiatives"),
+        ("Agriculture", "Farm subsidies, agricultural innovation, rural development, sustainable farming grants")
+    ]
+    
+    for i in range(0, len(grant_categories), 2):
+        cols = st.columns(2)
+        for j, col in enumerate(cols):
+            if i + j < len(grant_categories):
+                title, desc = grant_categories[i + j]
+                with col:
+                    st.markdown(f"""
+                    <div class="description-box">
+                        <div class="description-title">✓ {title}</div>
+                        <div class="description-content">{desc}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+    
     # Workflow statistics
     st.markdown("---")
     st.markdown("### 📊 Workflow Statistics")
