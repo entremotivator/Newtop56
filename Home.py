@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+import os
 
 # Page configuration
 st.set_page_config(
@@ -9,7 +10,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for styling
+# --- Locate the image properly ---
+# Build path relative to current file directory
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGE_PATH = os.path.join(CURRENT_DIR, "Image123.png")
+
+# Custom CSS
 st.markdown("""
 <style>
     .main-header {
@@ -90,9 +96,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Main content
 def main():
-    # Hero section
+    # Header section
     st.markdown("""
     <div class="main-header">
         <div class="hero-title">🤖 AI Employee Showcase</div>
@@ -100,14 +105,14 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # Display header image
-    try:
-        image = Image.open("Image123.png")
+    # Display image correctly
+    if os.path.exists(IMAGE_PATH):
+        image = Image.open(IMAGE_PATH)
         st.image(image, caption="AI-Powered Automation", use_column_width=True)
-    except FileNotFoundError:
-        st.warning("⚠️ Image123.png not found in the app directory. Please make sure it exists in Newtop56/streamlit_app/")
+    else:
+        st.error(f"⚠️ Image not found at: {IMAGE_PATH}")
 
-    # Introduction
+    # Intro
     st.markdown("""
     Welcome to the **AI Employee Showcase** — your gateway to discovering powerful automation workflows 
     that transform how businesses operate. Our AI-powered solutions help you automate repetitive tasks, 
@@ -115,8 +120,6 @@ def main():
     """)
     
     st.markdown("---")
-    
-    # Features section
     st.markdown("## 🌟 What We Offer")
     
     col1, col2, col3 = st.columns(3)
@@ -155,12 +158,9 @@ def main():
         """, unsafe_allow_html=True)
     
     st.markdown("---")
-    
-    # Use cases section
     st.markdown("## 💼 Use Cases")
     
     col_use1, col_use2 = st.columns(2)
-    
     with col_use1:
         st.markdown("""
         ### 📧 Automated Outreach
@@ -173,7 +173,6 @@ def main():
         Automatically capture, qualify, and nurture leads through intelligent workflows that save time 
         and improve conversion rates.
         """)
-    
     with col_use2:
         st.markdown("""
         ### 🤝 Customer Engagement
@@ -187,8 +186,6 @@ def main():
         """)
     
     st.markdown("---")
-    
-    # Call to action
     st.markdown("""
     <div class="cta-section">
         <h2>Ready to Transform Your Business?</h2>
@@ -200,8 +197,7 @@ def main():
         </p>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Footer
+
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #6c757d; padding: 2rem;">
