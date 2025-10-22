@@ -117,8 +117,7 @@ def main():
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.markdown("### 📱 Social Media Automation")
         
-        # Check if product image exists
-        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ai_social_content.png")
+        image_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "streamlit_app", "ai_social_content.png")
         if os.path.exists(image_path):
             st.image(image_path, use_column_width=True, caption="AI Social Content Creation - Automate Your Social Media")
         else:
