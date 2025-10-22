@@ -86,8 +86,15 @@ st.markdown("""
 # Load workflow data
 def load_workflow_data():
     workflow_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "workflow_google_maps_leads.json")
-    with open(workflow_path, 'r') as f:
-        return json.load(f)
+    if not os.path.exists(workflow_path):
+        st.warning("⚠️ workflow_google_maps_leads.json not found.")
+        return {"name": "Google Maps Local Leads", "nodes": [], "id": "N/A", "active": False, "versionId": "N/A"}
+    try:
+        with open(workflow_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except json.JSONDecodeError as e:
+        st.error(f"❌ Error parsing workflow JSON: {e}")
+        return {"name": "Google Maps Local Leads", "nodes": [], "id": "N/A", "active": False, "versionId": "N/A"}
 
 # Main app
 def main():
@@ -136,14 +143,7 @@ def main():
         # Description 2: Key Features
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
         st.markdown('<div class="description-title">🚀 Key Features</div>', unsafe_allow_html=True)
-        st.markdown(f'''<div class="description-content">• Automated Google Maps scraping
-• Location-based lead discovery
-• Business contact information extraction
-• Industry and category filtering
-• Lead qualification and scoring
-• CRM integration and export
-• Duplicate detection and removal
-• Real-time data enrichment</div>''', unsafe_allow_html=True)
+        st.markdown(f'''<div class="description-content">• Automated Google Maps scraping\n• Location-based lead discovery\n• Business contact information extraction\n• Industry and category filtering\n• Lead qualification and scoring\n• CRM integration and export\n• Duplicate detection and removal\n• Real-time data enrichment</div>''', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
