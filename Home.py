@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 
 # Page configuration
 st.set_page_config(
@@ -8,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling
+# Custom CSS for styling
 st.markdown("""
 <style>
     .main-header {
@@ -27,6 +28,13 @@ st.markdown("""
     .hero-subtitle {
         font-size: 1.5rem;
         opacity: 0.95;
+    }
+    .hero-image {
+        display: block;
+        margin: 2rem auto;
+        border-radius: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        width: 60%;
     }
     .feature-card {
         background: white;
@@ -91,10 +99,17 @@ def main():
         <div class="hero-subtitle">Revolutionize Your Business with Intelligent Automation</div>
     </div>
     """, unsafe_allow_html=True)
-    
+
+    # Display header image
+    try:
+        image = Image.open("Image123.png")
+        st.image(image, caption="AI-Powered Automation", use_column_width=True)
+    except FileNotFoundError:
+        st.warning("⚠️ Image123.png not found in the app directory. Please make sure it exists in Newtop56/streamlit_app/")
+
     # Introduction
     st.markdown("""
-    Welcome to the **AI Employee Showcase** - your gateway to discovering powerful automation workflows 
+    Welcome to the **AI Employee Showcase** — your gateway to discovering powerful automation workflows 
     that transform how businesses operate. Our AI-powered solutions help you automate repetitive tasks, 
     improve efficiency, and scale your operations effortlessly.
     """)
